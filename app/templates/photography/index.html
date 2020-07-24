@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>photography</title>
+    {% include 'photography/photoCss.html' %}
+
+</head>
+
+<body class="bg">
+    <div class="container-fluid" id="content">
+        <div class="jumbotron">
+            <p class="text-center" id="photography">Photography</p>
+        </div>
+        <div class="row">
+            {% if contents %}
+            {% for i in contents %}
+            <div class=" col-sm-4 p-3">
+                <div class="img_container">
+                    <input id="{{i.name}}" type="hidden" value="{{i.name}}" name="cat" data-index={{loop.index}}>
+                    <img id="{{loop.index}}" style='height: 100%; width: 100%; object-fit: cover' src="" class="img-fluid img-thumbnail rounded " alt="{{i.name}}">
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ url_for('category',cat=i.name) }}"> <button type="button" class="btn btn-outline-dark waves-effect">{{i.name[:-1]}}</button> </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <!-- <div class=" col-sm-4 p-3">
+                <div>
+                    <img src="{{ url_for('static',filename='/images/bodyBack.jpg')}}" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class=" col-sm-4 p-3">
+                <div>
+                    <img src="{{ url_for('static',filename='/images/bodyBack.jpg')}}" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class=" col-sm-4 p-3">
+                <div>
+                    <img src="{{ url_for('static',filename='/images/bodyBack.jpg')}}" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class=" col-sm-4 p-3">
+                <div>
+                    <img src="{{ url_for('static',filename='/images/bodyBack.jpg')}}" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class=" col-sm-4 p-3">
+                <div>
+                    <img src="{{ url_for('static',filename='/images/bodyBack.jpg')}}" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class=" col-sm-4 p-3">
+                <div>
+                    <img src="{{ url_for('static',filename='/images/bodyBack.jpg')}}" class="img-fluid" alt="">
+                </div>
+            </div> -->
+        </div>
+    </div>
+</body>
+<script>
+    $('input').each(function(){
+        var value = $(this).val();
+        var index = $(this).data('index');
+        var src = "https://pc0riginal.s3.us-east-2.amazonaws.com/"+value+"thumbnail.jpg";
+        $('#'+index).attr('src',src);
+        
+    })
+</script>
+</html>

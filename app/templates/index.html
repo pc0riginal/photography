@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.html')}}">
+    {% include 'bootstrap.html' %}
+    {% include 'mainCss.html' %}
+<title>pc0riginal</title>
+</head>
+<body class="bg">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 p-3">
+                <img src="{{ url_for('static',filename='/images/background.jpg')}}" class="img-fluid" alt="">
+                <!-- <div class="bg"></div> -->
+                <!-- <h1>pc0riginal</h1> -->
+            </div>
+            <div class="col-sm-6 col-md-6 p-3">
+                <div id="content">
+                    <h1 class="text-center" id="name">pc0riginal</h1>
+                    <div id="intro">
+                        <p>Photographer & videographer. Love of tea and travelling. Handstand and running is my dream.</p>
+                    </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ url_for('photography') }}"> <button type="button" class="btn btn-outline-dark waves-effect">PHOTOGRAPHY</button> </a>
+                            </div>
+                        
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-outline-dark waves-effect">VIDEOGRAPHY</button>
+                            </div>
+                      
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-outline-dark waves-effect">BLOG</button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-outline-dark waves-effect">CONTECT</button>
+                            </div>
+                        <div id="social" class="d-flex justify-content-center">
+                            <a href="https://www.facebook.com/paras.patel.102" class="fa fa-facebook btn btn-primary btn-circle"  target="_blank"></a>
+                            <a href="https://www.instagram.com/pc0riginal" class="fa fa-instagram btn btn-secondary btn btn-circle"  target="_blank"></a>
+                            <a href="https://www.youtube.com/channel/UC700UHhXBTO5dSdMhV4q8hA" class="fa fa-youtube btn btn-danger btn btn-circle"  target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="bg"></div> -->
+</body>
+</html>
