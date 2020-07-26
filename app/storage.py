@@ -5,6 +5,7 @@ import PIL
 from PIL import Image
 from botocore.exceptions import NoCredentialsError
 import math
+from app import app
 
 
 conn = boto.s3.connect_to_region('us-east-2')
@@ -47,8 +48,8 @@ def upload(bucket,folder,f,file_name):
                     im1 = Image.open(f)
                     if im1.mode in ("RGBA", "P"):
                         im1 = im1.convert("RGB")
-                    im1.save("app\static\\temp\\"+"thumbnail.jpg")
-                    f = "app\static\\temp\\"+"thumbnail.jpg"
+                    im1.save(app.config['UPLOAD_FOLDER']+"thumbnail.jpg")
+                    f = app.config['UPLOAD_FOLDER']+"thumbnail.jpg"
                 file_name = "thumbnail.jpg"
                 # file_name = 'thumbnail'+'.'+file_name.split(".")[1]
             # files = s3.Bucket('pc0riginal').objects.filter(Prefix=folder+'/')
