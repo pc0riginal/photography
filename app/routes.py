@@ -33,8 +33,8 @@ def upload():
                if f.filename.split(".")[1].lower() in ['png','jpg']:
                   l = os.listdir(MYDIR + "/" +app.config['UPLOAD_FOLDER'])
                   if f.filename not in l:
-                     k = f.save(os.path.join(MYDIR + "/" + app.config['UPLOAD_FOLDER'],f.filename))
-                  file_name = os.path.join(MYDIR + "/" + app.config['UPLOAD_FOLDER'],f.filename)
+                     k = f.save(os.path.join(MYDIR , app.config['UPLOAD_FOLDER'],f.filename))
+                  file_name = os.path.join(MYDIR ,app.config['UPLOAD_FOLDER'],f.filename)
                   response = storage.upload(bucket,form.folderName.data,file_name,f.filename)
                   if response == 1:
                      os.remove(file_name)
