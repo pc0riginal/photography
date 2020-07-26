@@ -3,12 +3,15 @@ from flask import render_template,send_from_directory,url_for,request,flash
 from app import storage
 from app.forms import Upload
 import os
-MYDIR = os.path.dirname(__file__)
+# MYDIR = os.path.dirname(__file__)
+parent_path = os.getcwd()
+parent_path = os.path.join(parent_path,'app/static/temp')
 bucket = 'pc0riginal'
 
 @app.route('/')
 @app.route('/index')
 def index():
+   print(parent_path)
    return render_template('index.html')
 
 @app.route('/photography',methods=['POST','GET'])
@@ -31,10 +34,10 @@ def upload():
          for f in files:
             if f.filename:
                if f.filename.split(".")[1].lower() in ['png','jpg']:
-                  l = os.listdir(MYDIR)
+                  l = os.listdir(parent_path)
                   if f.filename not in l:
-                     k = f.save(os.path.join(MYDIR,f.filename))
-                  file_name = os.path.join(MYDIR,f.filename)
+                     k = f.save(os.path.join(parent_path,f.filename))
+                  file_name = os.path.join(parent_path,f.filename)
                   response = storage.upload(bucket,form.folderName.data,file_name,f.filename)
                   if response == 1:
                      os.remove(file_name)
