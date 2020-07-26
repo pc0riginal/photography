@@ -3,7 +3,7 @@ from flask import render_template,send_from_directory,url_for,request,flash
 from app import storage
 from app.forms import Upload
 import os
-
+MYDIR = os.path.dirname(__file__)
 bucket = 'pc0riginal'
 
 @app.route('/')
