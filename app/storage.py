@@ -38,6 +38,7 @@ def upload(bucket,folder,f,file_name):
     bucket = conn.get_bucket(bucket)
     errors= ['folder not exist','file already there','error']
     # l = files('pc0riginal',folder)
+    print(MYDIR)
     l = []
     for i in bucket.list(folder,"/"):
         l.append(str(i))
