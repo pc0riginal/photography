@@ -5,7 +5,7 @@ from app.forms import Upload
 import os
 # MYDIR = os.path.dirname(__file__)
 parent_path = os.getcwd()
-parent_path = os.path.join(parent_path,'app/static/temp')
+parent_path = os.path.join(parent_path,'static/temp')
 bucket = 'pc0riginal'
 
 @app.route('/')
