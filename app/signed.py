@@ -14,7 +14,7 @@ def sign(bucket,key):
             'Bucket': bucket,
             'Key': key
         },
-        ExpiresIn=3600
+        ExpiresIn=60
     )
 
     return url 
