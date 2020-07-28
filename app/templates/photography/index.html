@@ -23,10 +23,10 @@
             {% for i in contents %}
             <div class=" col-sm-4 p-3">
                 <div class="img_container">
-                    <input id="{{i.name}}" type="hidden" value="{{i.name}}" name="cat" data-index={{loop.index}}>
-                    <img id="{{loop.index}}" style='height: 100%; width: 100%; object-fit: cover' src="" class="img-fluid img-thumbnail rounded " alt="{{i.name}}">
+                    <!-- <input id="{{i[0]}}" type="hidden" value="{{i.name}}" name="cat" data-index={{loop.index}}> -->
+                    <img id="{{loop.index}}" style='height: 100%; width: 100%; object-fit: cover' src="{{i[1]}}" class="img-fluid img-thumbnail rounded " alt="{{i[0]}}">
                     <div class="d-flex justify-content-center">
-                        <a href="{{ url_for('category',cat=i.name) }}"> <button type="button" class="btn btn-outline-dark waves-effect">{{i.name[:-1]}}</button> </a>
+                        <a href="{{ url_for('category',cat=i[0]) }}"> <button type="button" class="btn btn-outline-dark waves-effect">{{i[0][:-1]}}</button> </a>
                     </div>
                 </div>
             </div>
@@ -66,12 +66,12 @@
     </div>
 </body>
 <script>
-    $('input').each(function(){
-        var value = $(this).val();
-        var index = $(this).data('index');
-        var src = "https://pc0riginal.s3.us-east-2.amazonaws.com/"+value+"thumbnail.jpg";
-        $('#'+index).attr('src',src);
+    // $('input').each(function(){
+    //     var value = $(this).val();
+    //     var index = $(this).data('index');
+    //     var src = "https://pc0riginal.s3.us-east-2.amazonaws.com/"+value+"thumbnail.jpg";
+    //     $('#'+index).attr('src',src);
         
-    })
+    // })
 </script>
 </html>

@@ -6,6 +6,9 @@ from PIL import Image
 from botocore.exceptions import NoCredentialsError
 import math
 from app import app
+from app import signed
+from botocore.client import Config
+
 
 conn = boto.s3.connect_to_region('us-east-2')
 s3 = boto3.resource('s3')
@@ -17,11 +20,12 @@ def list_objects(bucket):
     return folders
 
 def files(bucket,name):
-    bucket = conn.get_bucket(bucket)
+    # bucket = conn.get_bucket(bucket)
     photos = []
-    for i in bucket.list(name,"/"):
-        photos.append(str(i).split(",")[1][:-1])
-    print(photos)
+    obj = client.list_objects_v2(Bucket=bucket,Prefix=name)
+    for i in obj['Contents']:
+        rs = signed.sign(bucket,str(i['Key']))
+        photos.append(rs)
     return photos
     
 def compress_file(file_name):
@@ -40,7 +44,6 @@ def upload(bucket,folder,f,file_name):
         l.append(str(i))
     if bucket.list(folder,"/"):
         try:
-            print(l)
             if len(l) == 0:
                 ext = file_name.split(".")[1]
                 if ext.lower() in ['png']:

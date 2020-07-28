@@ -3,6 +3,7 @@ from flask import render_template,send_from_directory,url_for,request,flash
 from app import storage
 from app.forms import Upload
 import os
+from app import signed
 # MYDIR = os.path.dirname(__file__)
 parent_path = os.getcwd()
 parent_path = os.path.join(parent_path)
@@ -17,7 +18,11 @@ def index():
 @app.route('/photography',methods=['POST','GET'])
 def photography():
    contents = storage.list_objects(bucket)
-   return render_template('photography/index.html',contents=contents)
+   photoListUrl = []
+   for i in contents:
+      url = signed.sign('pc0riginal',str(i.name)+'thumbnail.jpg')
+      photoListUrl.append((i.name,url))
+   return render_template('photography/index.html',contents=photoListUrl)
    
 @app.route('/category',methods=['POST','GET'])
 def category(cat=None):

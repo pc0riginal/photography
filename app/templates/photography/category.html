@@ -34,7 +34,7 @@ body{
         {% for i in photos %}
         <div class="col-sm-4 p-3">
             <div class="img_container">
-                <img id="{{loop.index}}" style='height: 100%; width: 100%; object-fit: cover' src="https://pc0riginal.s3.us-east-2.amazonaws.com/{{i}}" class="img-fluid" alt="{{i}}">
+                <img id="{{loop.index}}" style='height: 100%; width: 100%; object-fit: cover' src="{{i}}" class="img-fluid" alt="">
             </div>
         </div>
         {% endfor %}
